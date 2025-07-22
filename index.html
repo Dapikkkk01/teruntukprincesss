@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Princes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heart-shape {
+            position: relative;
+            width: 550px;
+            height: 550px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flower-emoji {
+            position: absolute;
+            font-size: 28px;
+            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 5;
+        }
+
+        .flower-emoji:hover {
+            transform: scale(1.4);
+        }
+
+        /* Sisi kiri atas hati */
+        .flower-emoji:nth-child(1) { top: 8%; left: 20%; animation-delay: 0s; }
+        .flower-emoji:nth-child(2) { top: 5%; left: 25%; animation-delay: 0.1s; }
+        .flower-emoji:nth-child(3) { top: 3%; left: 30%; animation-delay: 0.2s; }
+        .flower-emoji:nth-child(4) { top: 2%; left: 35%; animation-delay: 0.3s; }
+        .flower-emoji:nth-child(5) { top: 1%; left: 40%; animation-delay: 0.4s; }
+        .flower-emoji:nth-child(6) { top: 2%; left: 45%; animation-delay: 0.5s; }
+        
+        /* Sisi kanan atas hati */
+        .flower-emoji:nth-child(7) { top: 2%; right: 45%; animation-delay: 0.6s; }
+        .flower-emoji:nth-child(8) { top: 1%; right: 40%; animation-delay: 0.7s; }
+        .flower-emoji:nth-child(9) { top: 2%; right: 35%; animation-delay: 0.8s; }
+        .flower-emoji:nth-child(10) { top: 3%; right: 30%; animation-delay: 0.9s; }
+        .flower-emoji:nth-child(11) { top: 5%; right: 25%; animation-delay: 1s; }
+        .flower-emoji:nth-child(12) { top: 8%; right: 20%; animation-delay: 1.1s; }
+        
+        /* Sisi kiri tengah hati */
+        .flower-emoji:nth-child(13) { top: 12%; left: 18%; animation-delay: 1.2s; }
+        .flower-emoji:nth-child(14) { top: 16%; left: 16%; animation-delay: 1.3s; }
+        .flower-emoji:nth-child(15) { top: 20%; left: 14%; animation-delay: 1.4s; }
+        .flower-emoji:nth-child(16) { top: 24%; left: 13%; animation-delay: 1.5s; }
+        .flower-emoji:nth-child(17) { top: 28%; left: 12%; animation-delay: 1.6s; }
+        .flower-emoji:nth-child(18) { top: 32%; left: 12%; animation-delay: 1.7s; }
+        .flower-emoji:nth-child(19) { top: 36%; left: 13%; animation-delay: 1.8s; }
+        .flower-emoji:nth-child(20) { top: 40%; left: 14%; animation-delay: 1.9s; }
+        
+        /* Sisi kanan tengah hati */
+        .flower-emoji:nth-child(21) { top: 12%; right: 18%; animation-delay: 2s; }
+        .flower-emoji:nth-child(22) { top: 16%; right: 16%; animation-delay: 2.1s; }
+        .flower-emoji:nth-child(23) { top: 20%; right: 14%; animation-delay: 2.2s; }
+        .flower-emoji:nth-child(24) { top: 24%; right: 13%; animation-delay: 2.3s; }
+        .flower-emoji:nth-child(25) { top: 28%; right: 12%; animation-delay: 2.4s; }
+        .flower-emoji:nth-child(26) { top: 32%; right: 12%; animation-delay: 2.5s; }
+        .flower-emoji:nth-child(27) { top: 36%; right: 13%; animation-delay: 2.6s; }
+        .flower-emoji:nth-child(28) { top: 40%; right: 14%; animation-delay: 2.7s; }
+        
+        /* Sisi kiri bawah hati */
+        .flower-emoji:nth-child(29) { top: 44%; left: 16%; animation-delay: 2.8s; }
+        .flower-emoji:nth-child(30) { top: 48%; left: 18%; animation-delay: 2.9s; }
+        .flower-emoji:nth-child(31) { top: 52%; left: 20%; animation-delay: 3s; }
+        .flower-emoji:nth-child(32) { top: 56%; left: 23%; animation-delay: 0.5s; }
+        .flower-emoji:nth-child(33) { top: 60%; left: 26%; animation-delay: 1.5s; }
+        .flower-emoji:nth-child(34) { top: 64%; left: 30%; animation-delay: 2.5s; }
+        .flower-emoji:nth-child(35) { top: 68%; left: 34%; animation-delay: 0.8s; }
+        .flower-emoji:nth-child(36) { top: 72%; left: 38%; animation-delay: 1.8s; }
+        .flower-emoji:nth-child(37) { top: 76%; left: 42%; animation-delay: 2.8s; }
+        
+        /* Sisi kanan bawah hati */
+        .flower-emoji:nth-child(38) { top: 44%; right: 16%; animation-delay: 0.3s; }
+        .flower-emoji:nth-child(39) { top: 48%; right: 18%; animation-delay: 1.3s; }
+        .flower-emoji:nth-child(40) { top: 52%; right: 20%; animation-delay: 2.3s; }
+        .flower-emoji:nth-child(41) { top: 56%; right: 23%; animation-delay: 0.6s; }
+        .flower-emoji:nth-child(42) { top: 60%; right: 26%; animation-delay: 1.6s; }
+        .flower-emoji:nth-child(43) { top: 64%; right: 30%; animation-delay: 2.6s; }
+        .flower-emoji:nth-child(44) { top: 68%; right: 34%; animation-delay: 0.9s; }
+        .flower-emoji:nth-child(45) { top: 72%; right: 38%; animation-delay: 1.9s; }
+        .flower-emoji:nth-child(46) { top: 76%; right: 42%; animation-delay: 2.9s; }
+        
+        /* Ujung bawah hati */
+        .flower-emoji:nth-child(47) { top: 80%; left: 47%; animation-delay: 1.2s; }
+        .flower-emoji:nth-child(48) { top: 84%; left: 49%; animation-delay: 2.2s; }
+        .flower-emoji:nth-child(49) { bottom: 12%; left: 50%; transform: translateX(-50%); animation-delay: 0.7s; }
+
+        /* Tambahan bunga untuk memperkuat bentuk hati */
+        .flower-emoji:nth-child(50) { top: 10%; left: 22%; animation-delay: 1.7s; }
+        .flower-emoji:nth-child(51) { top: 10%; right: 22%; animation-delay: 2.7s; }
+        .flower-emoji:nth-child(52) { top: 14%; left: 19%; animation-delay: 0.4s; }
+        .flower-emoji:nth-child(53) { top: 14%; right: 19%; animation-delay: 1.4s; }
+        .flower-emoji:nth-child(54) { top: 18%; left: 15%; animation-delay: 2.4s; }
+        .flower-emoji:nth-child(55) { top: 18%; right: 15%; animation-delay: 0.1s; }
+
+        .center-button {
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 35px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .center-button:hover {
+            transform: translate(-50%, -50%) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
+            background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+        }
+
+        .center-button:active {
+            transform: translate(-50%, -50%) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(8deg); }
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 14px;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+
+        .title {
+            position: absolute;
+            top: 30px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            animation: glow 3s ease-in-out infinite alternate;
+            z-index: 20;
+        }
+
+        @keyframes glow {
+            from { 
+                text-shadow: 3px 3px 6px rgba(0,0,0,0.4), 0 0 15px rgba(255,255,255,0.3);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 3px 3px 6px rgba(0,0,0,0.4), 0 0 25px rgba(255,255,255,0.7);
+                transform: scale(1.05);
+            }
+        }
+
+        .heart-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+    <div class="title">💖                💖</div>
+    
+    <div class="container">
+        <div class="heart-glow"></div>
+        <div class="heart-shape">
+            <!-- 55 emoji bunga membentuk hati yang sempurna -->
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-emoji">🌹</div>
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-emoji">🌹</div>
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-emoji">🌹</div>
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-emoji">🌹</div>
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-emoji">🌹</div>
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-emoji">🌹</div>
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-emoji">🌹</div>
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-emoji">🌹</div>
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-emoji">🌹</div>
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-emoji">💖</div>
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-emoji">🌹</div>
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-emoji">🌺</div>
+        </div>
+        
+        <button class="center-button" onclick="buttonClick()">💕💕</button>
+    </div>
+
+    <script>
+        function buttonClick() {
+            // Efek klik tombol
+            const button = document.querySelector('.center-button');
+            button.style.transform = 'translate(-50%, -50%) scale(0.9)';
+            window.location.href = 'indexb.html'
+            
+            setTimeout(() => {
+                button.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 150);
+            
+            // Buat efek sparkle yang lebih banyak
+            createSparkles();
+            
+            // Ubah warna background secara random
+            const colors = [
+                'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)',
+                'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+                'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+                'linear-gradient(135deg, #ff8a80 0%, #ffb74d 100%)',
+                'linear-gradient(135deg, #c2e9fb 0%, #a8c8ec 100%)',
+                'linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)',
+                'linear-gradient(135deg, #fdbb2d 0%, #22c1c3 100%)'
+            ];
+            
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.background = randomColor;
+            
+            // Animasi bunga bergelombang
+            const flowers = document.querySelectorAll('.flower-emoji');
+            flowers.forEach((flower, index) => {
+                setTimeout(() => {
+                    flower.style.transform = 'scale(1.8) rotate(720deg)';
+                    flower.style.filter = 'brightness(1.5) drop-shadow(0 0 10px rgba(255,255,255,0.8))';
+                    setTimeout(() => {
+                        flower.style.transform = 'scale(1) rotate(0deg)';
+                        flower.style.filter = 'none';
+                    }, 800);
+                }, index * 30);
+            });
+
+            // Efek ledakan hati
+            createHeartExplosion();
+        }
+        
+        function createSparkles() {
+            for (let i = 0; i < 25; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                const sparkleEmojis = ['✨', '⭐', '💫', '🌟', '💖', '💕', '💗'];
+                sparkle.innerHTML = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                sparkle.style.fontSize = (Math.random() * 10 + 12) + 'px';
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 3000);
+            }
+        }
+
+        function createHeartExplosion() {
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '💖';
+                heart.style.position = 'absolute';
+                heart.style.left = '50%';
+                heart.style.top = '50%';
+                heart.style.fontSize = '20px';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '15';
+                heart.style.animation = `heartFly ${2 + Math.random() * 2}s ease-out forwards`;
+                heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                document.querySelector('.container').appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }
+        }
+        
+        // Tambahkan CSS untuk animasi heart fly
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes heartFly {
+                0% { 
+                    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% { 
+                    transform: translate(${-200 + Math.random() * 400}px, ${-200 + Math.random() * 400}px) scale(2) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Efek hover pada bunga
+        const flowers = document.querySelectorAll('.flower-emoji');
+        flowers.forEach(flower => {
+            flower.addEventListener('click', function() {
+                this.style.fontSize = '40px';
+                this.style.filter = 'drop-shadow(0 0 15px rgba(255,255,255,1))';
+                setTimeout(() => {
+                    this.style.fontSize = '28px';
+                    this.style.filter = 'none';
+                }, 500);
+                
+                // Buat efek mini sparkle
+                const miniSparkle = document.createElement('div');
+                miniSparkle.className = 'sparkle';
+                miniSparkle.innerHTML = '💫';
+                miniSparkle.style.left = this.offsetLeft + 'px';
+                miniSparkle.style.top = this.offsetTop + 'px';
+                miniSparkle.style.position = 'absolute';
+                miniSparkle.style.fontSize = '18px';
+                
+                this.parentElement.appendChild(miniSparkle);
+                
+                setTimeout(() => {
+                    miniSparkle.remove();
+                }, 2000);
+            });
+        });
+
+        // Auto sparkle effect setiap 5 detik
+        setInterval(() => {
+            if (Math.random() < 0.3) {
+                createSparkles();
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
